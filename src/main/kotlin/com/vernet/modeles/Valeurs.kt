@@ -1,4 +1,4 @@
-package com.vernet.modele
+package com.vernet.modeles
 
 import kotlinx.serialization.Serializable
 

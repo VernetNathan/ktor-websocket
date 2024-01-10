@@ -1,6 +1,7 @@
 package com.vernet.gestion
 
-import com.vernet.modele.Valeurs
+import com.vernet.modeles.Temp
+import com.vernet.modeles.Valeurs
 
 class Requettes {
     var laConnexion = Connexion("jdbc:mysql://localhost/websocket", "root", "")
@@ -16,5 +17,13 @@ class Requettes {
                     rs.getInt("valeur2"))
         }
         return valeur
+    }
+    fun ajouterTemp(temperature : Float) : Int{
+        val preparedStatement = laConnexion.getConnexion().prepareStatement("INSERT INTO temperatures (temp) values (?)")
+        preparedStatement.setString(1, temperature.toString())
+        return preparedStatement.executeUpdate()
+    }
+    fun lireTemp(){
+        //val preparedStatement = laConnexion.getConnexion().prepareStatement("SELECT ")
     }
 }

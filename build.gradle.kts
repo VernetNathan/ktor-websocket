@@ -23,6 +23,7 @@ repositories {
 }
 
 dependencies {
+    implementation("com.hivemq:hivemq-mqtt-client-shaded:1.3.0")
     implementation("io.ktor:ktor-server-core-jvm")
     implementation("io.ktor:ktor-server-content-negotiation-jvm")
     implementation("io.ktor:ktor-serialization-gson-jvm")

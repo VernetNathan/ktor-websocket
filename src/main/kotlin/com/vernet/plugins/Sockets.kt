@@ -1,7 +1,8 @@
 package com.vernet.plugins
 
 import com.vernet.gestion.Requettes
-import com.vernet.modele.Valeurs
+import com.vernet.hive.Hive
+import com.vernet.modeles.Valeurs
 import io.ktor.server.application.*
 import io.ktor.server.routing.*
 import io.ktor.server.websocket.*
@@ -10,6 +11,7 @@ import kotlinx.coroutines.delay
 import java.time.Duration
 
 fun Application.configureSockets() {
+    var requettes : Requettes = Requettes()
     install(WebSockets) {
         pingPeriod = Duration.ofSeconds(15)
         timeout = Duration.ofSeconds(15)
@@ -19,7 +21,6 @@ fun Application.configureSockets() {
     routing {
         webSocket("/ws/valeur/{id}") { // websocketSession
             var oldValue: String ?= null
-            var requettes : Requettes = Requettes()
             while (true){
                 var id = call.parameters["id"]?.toIntOrNull()
                 if (id == null){
@@ -34,7 +35,7 @@ fun Application.configureSockets() {
                     else {
                         if (oldValue != valeur.toString()){
                             oldValue = valeur.toString()
-                            send("Changement de valeur:" + Frame.Text(valeur.toString()))
+                            sendSerialized(valeur)
                         }
 
                     }
@@ -47,6 +48,11 @@ fun Application.configureSockets() {
                 send(Frame.Text("Bonjour"))
                 delay(1000)
             }
+        }
+        webSocket ("/ws/mqtt") {
+            var oldTemp : Float? = null
+
+
         }
     }
 }

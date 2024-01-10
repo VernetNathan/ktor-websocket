@@ -1,12 +1,14 @@
 package com.vernet
 
 import com.vernet.gestion.Connexion
+import com.vernet.hive.Hive
 import com.vernet.plugins.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 
 fun main() {
+    val mqtt = Hive()
 val environment = applicationEngineEnvironment {
     connector {
         port=8080
