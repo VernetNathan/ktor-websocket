@@ -1,4 +1,4 @@
-package com.example.gestion
+package com.vernet.gestion
 
 import java.sql.Connection
 import java.sql.DriverManager
