@@ -34,7 +34,7 @@ fun Application.configureSockets() {
                     else {
                         if (oldValue != valeur.toString()){
                             oldValue = valeur.toString()
-                            send(Frame.Text(valeur.toString()))
+                            send("Changement de valeur:" + Frame.Text(valeur.toString()))
                         }
 
                     }
